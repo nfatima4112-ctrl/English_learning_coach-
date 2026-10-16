@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>English Learning Coach</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" data-page="dashboard">
+      <span class="brand-icon">E</span>
+      <span>English<span class="brand-light">Coach</span></span>
+    </a>
+    <div class="top-actions">
+      <span class="level-tag">Beginner · A1</span>
+      <button class="avatar" aria-label="Your profile">N</button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <p class="nav-heading">LEARN</p>
+      <button class="nav-link active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+      <button class="nav-link" data-page="lessons">▤ <span>Lessons</span></button>
+      <button class="nav-link" data-page="vocabulary">Aa <span>Vocabulary</span></button>
+      <button class="nav-link" data-page="quiz">✓ <span>Quick Quiz</span></button>
+      <button class="nav-link" data-page="practice">◎ <span>Daily Practice</span></button>
+
+      <div class="sidebar-bottom">
+        <div class="mini-card">
+          <span class="mini-icon">✦</span>
+          <strong>Keep learning!</strong>
+          <p>Small steps every day lead to big progress.</p>
+        </div>
+        <p class="sidebar-footer">English Coach · 1.0</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section id="dashboard" class="page active">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow">YOUR LEARNING SPACE</p>
+            <h1>Welcome back, learner! <span>👋</span></h1>
+            <p class="muted">Build your English skills one day at a time.</p>
+          </div>
+          <button class="primary-btn" data-go="lessons">Continue learning →</button>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="hero-label">YOUR NEXT STEP</span>
+            <h2>Small practice.<br>Big confidence.</h2>
+            <p>Learn useful words, improve your grammar, and practice English every day.</p>
+            <button class="hero-btn" data-go="practice">Start daily practice →</button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-circle">Aa</div>
+            <span class="art-word word-one">Hello!</span>
+            <span class="art-word word-two">Learn ✦</span>
+            <span class="art-word word-three">Practice</span>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><h2>Your progress</h2><p class="muted">Your learning activity on this device.</p></div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-icon purple">▤</span>
+            <p>Lessons completed</p>
+            <strong id="statLessons">0</strong>
+            <small>Keep moving forward</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon green">Aa</span>
+            <p>Words learned</p>
+            <strong id="statWords">0</strong>
+            <small>Grow your vocabulary</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon orange">✓</span>
+            <p>Quiz accuracy</p>
+            <strong id="statAccuracy">0%</strong>
+            <small id="statAttempts">No quizzes attempted yet</small>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel">
+            <div class="panel-heading"><h2>Learning paths</h2><span>Explore</span></div>
+            <button class="path-row" data-go="lessons">
+              <span class="path-icon purple">▤</span>
+              <span class="path-copy"><strong>Grammar lessons</strong><small>Build your English foundation</small></span>
+              <span class="arrow">→</span>
+            </button>
+            <button class="path-row" data-go="vocabulary">
+              <span class="path-icon green">Aa</span>
+              <span class="path-copy"><strong>Daily vocabulary</strong><small>Learn words with Urdu meanings</small></span>
+              <span class="arrow">→</span>
+            </button>
+            <button class="path-row" data-go="quiz">
+              <span class="path-icon orange">✓</span>
+              <span class="path-copy"><strong>Test your knowledge</strong><small>Practice with short quizzes</small></span>
+              <span class="arrow">→</span>
+            </button>
+          </article>
+
+          <article class="panel quote-panel">
+            <span class="quote-mark">“</span>
+            <h2>Word of the day</h2>
+            <p class="daily-word" id="dashboardWord">Confident</p>
+            <p class="muted" id="dashboardMeaning">پراعتماد</p>
+            <p class="example">"I feel confident when I practice."</p>
+            <button class="text-btn" data-go="vocabulary">Explore vocabulary →</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="lessons" class="page">
+        <div class="page-intro">
+          <p class="eyebrow">LEARN STEP BY STEP</p>
+          <h1>English lessons</h1>
+          <p class="muted">Understand the rules, read examples, and mark lessons complete.</p>
+        </div>
+        <div class="filter-row">
+          <input id="lessonSearch" type="search" placeholder="Search lessons..." aria-label="Search lessons">
+          <span class="result-count" id="lessonCount"></span>
+        </div>
+        <div id="lessonGrid" class="lesson-grid"></div>
+        <div id="lessonDetail" class="panel lesson-detail hidden"></div>
+      </section>
+
+      <section id="vocabulary" class="page">
+        <div class="page-intro">
+          <p class="eyebrow">GROW YOUR WORD POWER</p>
+          <h1>Vocabulary builder</h1>
+          <p class="muted">Explore everyday English words with Urdu meanings and examples.</p>
+        </div>
+        <div class="vocab-tools">
+          <input id="wordSearch" type="search" placeholder="Search English or Urdu..." aria-label="Search vocabulary">
+          <select id="wordCategory" aria-label="Filter vocabulary">
+            <option value="All">All categories</option>
+            <option value="Daily life">Daily life</option>
+            <option value="Feelings">Feelings</option>
+            <option value="Study">Study</option>
+            <option value="Actions">Actions</option>
+          </select>
+        </div>
+        <p id="wordCount" class="muted"></p>
+        <div id="wordGrid" class="word-grid"></div>
+      </section>
+
+      <section id="quiz" class="page">
+        <div class="page-intro">
+          <p class="eyebrow">PRACTICE MAKES PROGRESS</p>
+          <h1>Quick English quiz</h1>
+          <p class="muted">Choose the correct answer and get instant feedback.</p>
+        </div>
+        <div class="quiz-layout">
+          <div class="quiz-card panel" id="quizCard">
+            <div class="quiz-meta">
+              <span class="level-tag">Beginner</span>
+              <span id="quizCounter">Question 1</span>
+            </div>
+            <div class="progress-track"><div id="quizProgress" class="progress-fill"></div></div>
+            <h2 id="quizQuestion">Loading question...</h2>
+            <div id="quizOptions" class="quiz-options"></div>
+            <p id="quizFeedback" class="feedback" aria-live="polite"></p>
+            <div class="quiz-actions">
+              <button id="checkAnswer" class="primary-btn">Check answer</button>
+              <button id="nextQuestion" class="primary-btn hidden">Next question →</button>
+            </div>
+          </div>
+          <aside class="panel quiz-tip">
+            <span class="tip-icon">✦</span>
+            <h3>Learning tip</h3>
+            <p>Read the complete sentence before selecting an answer. Look for clues such as the subject and the time.</p>
+            <p class="muted">Your best learning tool is consistent practice.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="practice" class="page">
+        <div class="page-intro">
+          <p class="eyebrow">YOUR DAILY ENGLISH HABIT</p>
+          <h1>Daily practice</h1>
+          <p class="muted">Read aloud, write a sentence, and build confidence.</p>
+        </div>
+        <div class="practice-grid">
+          <article class="panel practice-card">
+            <span class="practice-icon purple">01</span>
+            <h2>Speak this sentence</h2>
+            <p class="speaking-sentence" id="speakingSentence">I am learning English every day.</p>
+            <p class="muted">میں ہر روز انگریزی سیکھ رہی ہوں۔</p>
+            <button class="primary-btn" id="speakBtn">🔊 Listen</button>
+            <p class="small-note">Uses your browser's speech support if available.</p>
+          </article>
+          <article class="panel practice-card">
+            <span class="practice-icon green">02</span>
+            <h2>Write in English</h2>
+            <p class="muted">Write 2–3 sentences about your day.</p>
+            <textarea id="writingInput" rows="5" placeholder="Today, I learned..."></textarea>
+            <div class="writing-footer">
+              <span id="wordTally">0 words</span>
+              <button class="primary-btn" id="saveWriting">Save writing</button>
+            </div>
+            <p id="writingMessage" class="feedback" aria-live="polite"></p>
+          </article>
+          <article class="panel practice-card full-span">
+            <span class="practice-icon orange">03</span>
+            <h2>Daily challenge</h2>
+            <p>Use the word <strong id="challengeWord">beautiful</strong> in your own English sentence.</p>
+            <input id="challengeInput" type="text" placeholder="Write your sentence here...">
+            <button class="primary-btn" id="saveChallenge">Complete challenge</button>
+            <p id="challengeMessage" class="feedback" aria-live="polite"></p>
+          </article>
+        </div>
+      </section>
+
+      <footer class="app-footer">English Coach <span>·</span> Learn a little every day.</footer>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
